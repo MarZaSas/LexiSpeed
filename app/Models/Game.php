@@ -11,6 +11,7 @@ class Game extends Model
 {
     protected $fillable = [
         'user_id',
+        'mode',
         'difficulty',
         'total_words',
         'completed_words',
