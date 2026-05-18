@@ -7,59 +7,70 @@ use Illuminate\Http\Request;
 
 class RoulettePhraseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $roulettePhrases = RoulettePhrase::latest()->paginate(10);
+
+        return view('roulette_phrases.index', compact('roulettePhrases'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('roulette_phrases.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'text' => 'required|string|unique:roulette_phrases,text',
+        ]);
+
+        RoulettePhrase::create([
+            'text' => $request->text,
+            'is_active' => $request->has('is_active'),
+        ]);
+
+        return redirect()
+            ->route('roulette-phrases.index')
+            ->with('success', 'Frase de ruleta creada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(RoulettePhrase $roulettePhrase)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(RoulettePhrase $roulettePhrase)
     {
-        //
+        return view('roulette_phrases.edit', compact('roulettePhrase'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, RoulettePhrase $roulettePhrase)
     {
-        //
+        $request->validate([
+            'text' => 'required|string|unique:roulette_phrases,text,' . $roulettePhrase->id,
+        ]);
+
+        $roulettePhrase->update([
+            'text' => $request->text,
+            'is_active' => $request->has('is_active'),
+        ]);
+
+        return redirect()
+            ->route('roulette-phrases.index')
+            ->with('success', 'Frase de ruleta actualizada.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(RoulettePhrase $roulettePhrase)
     {
-        //
+        RoulettePhrase::destroy($roulettePhrase->id);
+
+        return redirect()
+            ->route('roulette-phrases.index')
+            ->with('success', 'Frase de ruleta eliminada.');
+    }
+
+    public function toggle(RoulettePhrase $roulettePhrase)
+    {
+        $roulettePhrase->update([
+            'is_active' => !$roulettePhrase->is_active,
+        ]);
+
+        return back();
     }
 }

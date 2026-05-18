@@ -6,6 +6,7 @@ use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhraseController;
 use App\Http\Controllers\GhostGameController;
+use App\Http\Controllers\RoulettePhraseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('words/{word}/toggle', [WordController::class, 'toggle'])->name('words.toggle');
     Route::resource('words', WordController::class);
     Route::resource('admin/phrases', PhraseController::class);
+    Route::resource('admin/roulette-phrases', RoulettePhraseController::class);
+
+    Route::post(
+        'admin/roulette-phrases/{roulettePhrase}/toggle',
+        [RoulettePhraseController::class, 'toggle']
+    )->name('roulette-phrases.toggle');
 });
 
 Route::post(

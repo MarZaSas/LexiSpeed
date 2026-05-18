@@ -154,6 +154,7 @@
                     <a href="{{ route('words.index') }}" class="nav-link nav-link-custom">Palabras</a>
                     <a href="{{ route('words.create') }}" class="nav-link nav-link-custom">Nueva palabra</a>
                     <a href="{{ route('phrases.index') }}" class="nav-link nav-link-custom">Frases</a>
+                    <a href="{{ route('roulette-phrases.index') }}" class="nav-link nav-link-custom">Frases Ruleta</a>
                 @endif
 
                 <a href="{{ route('profile.edit') }}" class="nav-link nav-link-custom">Perfil</a>
