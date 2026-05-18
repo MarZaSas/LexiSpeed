@@ -265,9 +265,9 @@
     const difficulty = @json($game->difficulty);
 
     const timeLimits = {
-        easy: 8,
-        medium: 10,
-        hard: 12
+        easy: 5,
+        medium: 7,
+        hard: 8
     };
 
     const input = document.getElementById('wordInput');

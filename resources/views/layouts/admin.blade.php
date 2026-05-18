@@ -124,7 +124,7 @@
 <body>
     <nav class="navbar navbar-expand-lg admin-navbar">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <a href="{{ auth()->user()->isAdmin() ? route('dashboard') : route('game.difficulty') }}" 
+            <a href="{{ auth()->user()->isAdmin() ? route('dashboard') : route('game.difficulty') }}"
             class="d-flex align-items-center gap-2 text-decoration-none">
 
                 <div class="nav-avatar">
@@ -153,6 +153,7 @@
                     <a href="{{ route('dashboard') }}" class="nav-link nav-link-custom">Panel</a>
                     <a href="{{ route('words.index') }}" class="nav-link nav-link-custom">Palabras</a>
                     <a href="{{ route('words.create') }}" class="nav-link nav-link-custom">Nueva palabra</a>
+                    <a href="{{ route('phrases.index') }}" class="nav-link nav-link-custom">Frases</a>
                 @endif
 
                 <a href="{{ route('profile.edit') }}" class="nav-link nav-link-custom">Perfil</a>

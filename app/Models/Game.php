@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\GamePhraseAttempt;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\GameWordAttempt;
 use App\Models\User;
@@ -28,5 +29,9 @@ class Game extends Model
     public function attempts()
     {
         return $this->hasMany(GameWordAttempt::class);
+    }
+    public function phraseAttempts()
+    {
+        return $this->hasMany(GamePhraseAttempt::class);
     }
 }

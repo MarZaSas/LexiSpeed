@@ -113,9 +113,9 @@ class GameController extends Controller
         $isCorrect = $typedWord === $correctWord;
 
         $difficultyConfig = match ($game->difficulty) {
-            'easy' => ['time_limit' => 8, 'base_score' => 100],
-            'medium' => ['time_limit' => 10, 'base_score' => 150],
-            'hard' => ['time_limit' => 12, 'base_score' => 200],
+            'easy' => ['time_limit' => 5, 'base_score' => 100],
+            'medium' => ['time_limit' => 7, 'base_score' => 150],
+            'hard' => ['time_limit' => 8, 'base_score' => 200],
         };
 
         $timeLimit = $difficultyConfig['time_limit'];

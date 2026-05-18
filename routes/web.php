@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WordController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhraseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('words/{word}/toggle', [WordController::class, 'toggle'])->name('words.toggle');
     Route::resource('words', WordController::class);
+    Route::resource('admin/phrases', PhraseController::class);
 });
+
+Route::post(
+    'admin/phrases/{phrase}/toggle',
+    [PhraseController::class, 'toggle']
+)->name('phrases.toggle');
 
 require __DIR__.'/auth.php';
