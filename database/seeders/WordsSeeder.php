@@ -68,7 +68,7 @@ class WordsSeeder extends Seeder
                 ['text' => $word['text']],
                 [
                     'difficulty' => $word['difficulty'],
-                    'length' => $word['length'],
+                    'length' => mb_strlen($word['text']),
                     'is_active' => true,
                 ]
             );
