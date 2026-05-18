@@ -39,12 +39,9 @@
                 <li>Hasta 100 puntos por frase</li>
             </ul>
 
-            <form action="{{ route('ghost.start') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-warning btn-game w-100 text-dark">
-                    Jugar fantasma
-                </button>
-            </form>
+            <button type="button" class="btn btn-warning btn-game w-100 text-dark" disabled>
+                Próximamente
+            </button>
         </div>
     </div>
 </div>
