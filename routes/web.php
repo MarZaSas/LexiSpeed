@@ -5,6 +5,7 @@ use App\Http\Controllers\WordController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhraseController;
+use App\Http\Controllers\GhostGameController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/play', [GameController::class, 'difficulty'])->name('game.difficulty');
     Route::post('/play/start', [GameController::class, 'start'])->name('game.start');
     Route::get('/play/modes', [GameController::class, 'modes'])->name('game.modes');
+    Route::post('/ghost/start', [GhostGameController::class, 'start'])->name('ghost.start');
+    Route::get('/ghost/{game}', [GhostGameController::class, 'play'])->name('ghost.play');
+    Route::post('/ghost/{game}/attempt', [GhostGameController::class, 'submitAttempt'])->name('ghost.attempt');
     Route::get('/play/{game}', [GameController::class, 'play'])->name('game.play');
     Route::post('/play/{game}/attempt', [GameController::class, 'submitAttempt'])->name('game.attempt');
 });
