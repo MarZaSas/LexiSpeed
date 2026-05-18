@@ -1,0 +1,52 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('roulette_games', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('game_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->foreignId('roulette_phrase_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->text('revealed_text')->nullable();
+
+            $table->json('used_letters')->nullable();
+
+            $table->integer('current_points')->default(0);
+
+            $table->integer('turn_points')->default(0);
+
+            $table->integer('lives')->default(3);
+
+            $table->enum('status', [
+                'playing',
+                'won',
+                'lost'
+            ])->default('playing');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('roulette_games');
+    }
+};

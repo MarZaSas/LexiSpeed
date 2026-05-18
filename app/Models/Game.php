@@ -35,4 +35,8 @@ class Game extends Model
     {
         return $this->hasMany(GamePhraseAttempt::class);
     }
+    public function rouletteGame()
+    {
+        return $this->hasOne(RouletteGame::class);
+    }
 }
