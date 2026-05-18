@@ -162,4 +162,9 @@ class GameController extends Controller
 
         return redirect()->route('game.play', $game);
     }
+
+    public function modes()
+    {
+        return view('game.modes');
+    }
 }
