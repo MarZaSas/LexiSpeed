@@ -19,8 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
     Route::get('/play', [GameController::class, 'difficulty'])->name('game.difficulty');
     Route::post('/play/start', [GameController::class, 'start'])->name('game.start');
+    Route::get('/play/modes', [GameController::class, 'modes'])->name('game.modes');
     Route::get('/play/{game}', [GameController::class, 'play'])->name('game.play');
     Route::post('/play/{game}/attempt', [GameController::class, 'submitAttempt'])->name('game.attempt');
 });
