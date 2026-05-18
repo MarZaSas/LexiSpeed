@@ -51,7 +51,7 @@ class GhostGameController extends Controller
             abort(403);
         }
 
-        $game->load('phraseAttempts');
+        $game->load('phraseAttempts.phrase');
 
         $currentAttempt = $game->phraseAttempts()
             ->with('phrase')

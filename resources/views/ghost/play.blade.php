@@ -66,6 +66,40 @@
                         <div class="stat-value text-warning">{{ $game->total_score }} / 300</div>
                     </div>
 
+                    <div class="text-start mt-5">
+                        <h3 class="fw-bold text-light mb-3">Resumen de frases</h3>
+
+                        <div class="d-grid gap-3">
+                            @foreach($game->phraseAttempts->sortBy('phrase_order') as $attempt)
+                                <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+                                    <div class="d-flex justify-content-between flex-wrap gap-2 mb-3">
+                                        <strong class="text-warning">Frase {{ $attempt->phrase_order }}</strong>
+                                        <span class="badge bg-info rounded-pill">
+                                            {{ $attempt->score_earned }} puntos
+                                        </span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div style="color:#94a3b8;">Frase correcta</div>
+                                        <div class="text-light fw-bold">
+                                            {{ $attempt->phrase->text }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div style="color:#94a3b8;">Tu respuesta</div>
+                                        <div class="{{ $attempt->score_earned == 100 ? 'text-success' : 'text-danger' }} fw-bold">
+                                            {{ $attempt->typed_phrase ?: 'Sin respuesta' }}
+                                        </div>
+                                    </div>
+
+                                    <div style="color:#94a3b8;">
+                                        Similitud: {{ number_format($attempt->similarity_score, 2) }}%
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                     <a href="{{ route('game.modes') }}" class="btn btn-success btn-game">
                         Volver a modos
                     </a>
