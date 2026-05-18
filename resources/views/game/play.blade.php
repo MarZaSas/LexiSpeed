@@ -63,7 +63,7 @@
             </div>
 
             @if(!$isFinished && $currentAttempt)
-                <div class="game-area text-center">
+                <div class="game-area text-center" id="game-area">
                     <div class="timer-wrapper mb-4">
                         <div class="timer-circle">
                             <span id="timerValue">0</span>s
@@ -356,9 +356,20 @@
     input.addEventListener('input', validateWord);
 
     window.addEventListener('load', () => {
+    const gameArea = document.getElementById('game-area');
+
+    if (gameArea) {
+        gameArea.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+    setTimeout(() => {
         input.focus();
         startTimer();
-    });
+    }, 400);
+});
 </script>
 @endif
 @endpush
