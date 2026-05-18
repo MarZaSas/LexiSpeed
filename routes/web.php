@@ -34,6 +34,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/roulette/start', [RouletteGameController::class, 'start'])->name('roulette.start');
     Route::get('/roulette/{game}', [RouletteGameController::class, 'play'])->name('roulette.play');
+    Route::post('/roulette/{game}/save-points', [RouletteGameController::class, 'savePoints'])
+    ->name('roulette.save-points');
+
+    Route::post('/roulette/{game}/buy-letter', [RouletteGameController::class, 'buyLetter'])
+        ->name('roulette.buy-letter');
+
+    Route::post('/roulette/{game}/solve', [RouletteGameController::class, 'solve'])
+        ->name('roulette.solve');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
