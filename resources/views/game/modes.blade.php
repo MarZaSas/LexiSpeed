@@ -46,6 +46,28 @@
                 </button>
             </form>
         </div>
+
+        <div class="col-md-5">
+            <div class="panel-card p-4 h-100 text-center">
+                <h2 class="mb-3 text-danger fw-bold">Modo Ruleta</h2>
+                <p class="subtitle-text">
+                    Gira la ruleta, compra letras y resuelve la frase antes de perder tus vidas.
+                </p>
+
+                <ul class="list-unstyled mb-4" style="color:#cbd5e1;">
+                    <li>1 frase oculta</li>
+                    <li>3 vidas</li>
+                    <li>Premios y castigos aleatorios</li>
+                </ul>
+
+                <form action="{{ route('roulette.start') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-game w-100">
+                        Jugar ruleta
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
