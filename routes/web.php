@@ -53,4 +53,6 @@ Route::post(
     [PhraseController::class, 'toggle']
 )->name('phrases.toggle');
 
+Route::post('/roulette/{game}/spin', [RouletteGameController::class, 'spin'])
+    ->name('roulette.spin');
 require __DIR__.'/auth.php';

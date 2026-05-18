@@ -7,7 +7,7 @@
 </div>
 
 <div class="row g-4 justify-content-center">
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="panel-card p-4 h-100 text-center">
             <h2 class="mb-3 text-info fw-bold">Modo Clásico</h2>
             <p class="subtitle-text">
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="panel-card p-4 h-100 text-center">
             <h2 class="mb-3 text-warning fw-bold">Modo Fantasma</h2>
             <p class="subtitle-text">
@@ -46,8 +46,8 @@
                 </button>
             </form>
         </div>
-
-        <div class="col-md-5">
+    </div>
+    <div class="col-md-4">
             <div class="panel-card p-4 h-100 text-center">
                 <h2 class="mb-3 text-danger fw-bold">Modo Ruleta</h2>
                 <p class="subtitle-text">
@@ -68,6 +68,5 @@
                 </form>
             </div>
         </div>
-    </div>
 </div>
 @endsection

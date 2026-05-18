@@ -14,6 +14,11 @@
         </p>
     </div>
 
+    @if(session('roulette_result'))
+        <div class="alert alert-info rounded-4 border-0 text-center mb-4">
+            {{ session('roulette_result') }}
+        </div>
+    @endif
     <div class="row g-3 mb-4">
         <div class="col-md-4">
             <div class="game-stat-card text-center">
@@ -47,8 +52,14 @@
         @endforeach
     </div>
 
-    <div class="text-center">
-        <p class="subtitle-text">Siguiente paso: añadir giro de ruleta, compra de letras y resolver frase.</p>
+    <div class="text-center mt-4">
+        <form action="{{ route('roulette.spin', $game) }}" method="POST">
+            @csrf
+
+            <button type="submit" class="btn btn-danger btn-game px-5">
+                Girar ruleta
+            </button>
+        </form>
     </div>
 </div>
 @endsection
