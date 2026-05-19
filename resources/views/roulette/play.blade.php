@@ -41,6 +41,28 @@
                 <div class="stat-value text-danger">{{ $roulette->lives }}</div>
             </div>
         </div>
+
+    </div>
+    @php
+        $usedLetters = $roulette->used_letters ?? [];
+    @endphp
+
+    <div class="mb-4">
+        <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+            <h3 class="fw-bold text-light mb-3">Letras compradas</h3>
+
+            @if(count($usedLetters) > 0)
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach($usedLetters as $usedLetter)
+                        <span class="badge rounded-pill bg-secondary px-3 py-2 fs-6">
+                            {{ strtoupper($usedLetter) }}
+                        </span>
+                    @endforeach
+                </div>
+            @else
+                <p class="subtitle-text mb-0">Todavía no has comprado ninguna letra.</p>
+            @endif
+        </div>
     </div>
 
     <div class="roulette-panel text-center mb-4">
@@ -311,14 +333,16 @@
 
     const segments = [
         { label: '+50', value: 'plus_50' },
-        { label: '+50', value: 'plus_50' },
-        { label: '+50', value: 'plus_50' },
-        { label: '+100', value: 'plus_100' },
         { label: '+100', value: 'plus_100' },
         { label: '-50', value: 'minus_50' },
+        { label: '-1 Vida', value: 'lose_life' },
+        { label: '+50', value: 'plus_50' },
         { label: '-50', value: 'minus_50' },
         { label: 'Comodín', value: 'joker' },
-        { label: '-1 Vida', value: 'lose_life' },
+        { label: '+50', value: 'plus_50' },
+        { label: '+100', value: 'plus_100' },
+
+
     ];
 
     if (spinForm && spinButton && rouletteWheel && wheelResult) {
