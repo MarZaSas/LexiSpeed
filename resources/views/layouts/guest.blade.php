@@ -112,6 +112,18 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 18px rgba(0,0,0,0.25);
         }
+        .auth-card form {
+    width: 100%;
+}
+
+    .auth-input {
+        width: 100% !important;
+        display: block;
+    }
+
+    .auth-button {
+        width: 100% !important;
+    }
     </style>
 </head>
 <body>
