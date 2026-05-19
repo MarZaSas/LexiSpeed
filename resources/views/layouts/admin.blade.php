@@ -77,17 +77,47 @@
         }
 
         .table-custom {
-            color: #f8fafc;
-        }
+            --bs-table-bg: transparent !important;
+            --bs-table-color: #e5e7eb !important;
+            --bs-table-border-color: rgba(255,255,255,0.08) !important;
 
-        .table-custom th,
-        .table-custom td {
-            border-color: rgba(255,255,255,0.08);
+            color: #e5e7eb !important;
+            border-collapse: separate !important;
+            border-spacing: 0 10px !important;
         }
 
         .table-custom thead th {
-            background: rgba(255,255,255,0.06);
-            color: #e2e8f0;
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+            border: none !important;
+            padding: 16px !important;
+            font-weight: 800 !important;
+        }
+
+        .table-custom tbody td {
+            background-color: rgba(255,255,255,0.08) !important;
+            color: #e5e7eb !important;
+            border: none !important;
+            padding: 16px !important;
+            vertical-align: middle !important;
+        }
+
+        .table-custom tbody tr:hover td {
+            background-color: rgba(56,189,248,0.14) !important;
+        }
+
+        .table-custom tbody td:first-child,
+        .table-custom thead th:first-child {
+            border-radius: 14px 0 0 14px !important;
+        }
+
+        .table-custom tbody td:last-child,
+        .table-custom thead th:last-child {
+            border-radius: 0 14px 14px 0 !important;
+        }
+
+        .table-custom .fw-bold {
+            color: #f8fafc !important;
         }
         .nav-avatar {
             width: 42px;
