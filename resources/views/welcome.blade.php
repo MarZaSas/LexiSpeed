@@ -134,7 +134,7 @@
 
             <div class="d-flex flex-wrap justify-content-center gap-3">
                 @auth
-                    <a href="{{ route('game.difficulty') }}" class="btn btn-success btn-game">Jugar ahora</a>
+                    <a href="{{ route('game.modes') }}" class="btn btn-success btn-game">Jugar ahora</a>
 
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('dashboard') }}" class="btn btn-info btn-game text-white">Panel admin</a>
