@@ -72,7 +72,7 @@ class RouletteGameController extends Controller
         'result' => 'required|in:plus_50,plus_100,minus_50,joker,lose_life',
     ]);
 
-    $roulette = $game->rouletteGame;
+    $roulette = $game->rouletteGame()->with('phrase')->first();
 
     if ($roulette->status !== 'playing') {
         return back();
@@ -113,7 +113,25 @@ class RouletteGameController extends Controller
 
         case 'joker':
             $roulette->turn_points = 0;
-            $message = '¡Comodín! Próximamente desvelará una palabra completa.';
+
+            $roulette->revealed_text = $this->revealRandomWord(
+                $roulette->phrase->text,
+                $roulette->revealed_text
+            );
+
+            $message = '¡Comodín! Se ha desvelado una palabra del panel.';
+
+            if (!$this->hasHiddenLetters($roulette->revealed_text)) {
+                $roulette->status = 'won';
+
+                $game->completed_words = 1;
+                $game->total_score = $roulette->current_points;
+                $game->ended_at = now();
+                $game->save();
+
+                $message = '¡Comodín! Has completado la frase.';
+            }
+
             break;
     }
 
@@ -343,5 +361,31 @@ private function discountPoints(RouletteGame $roulette, int $cost): void
     $remainingCost = $cost - $roulette->turn_points;
     $roulette->turn_points = 0;
     $roulette->current_points = max(0, $roulette->current_points - $remainingCost);
+}
+
+private function revealRandomWord(string $originalPhrase, string $revealedText): string
+{
+    $originalWords = explode(' ', $originalPhrase);
+    $revealedWords = explode(' ', $revealedText);
+
+    $hiddenWordIndexes = [];
+
+    foreach ($originalWords as $index => $word) {
+        $revealedWord = $revealedWords[$index] ?? '';
+
+        if (str_contains($revealedWord, '_')) {
+            $hiddenWordIndexes[] = $index;
+        }
+    }
+
+    if (empty($hiddenWordIndexes)) {
+        return $revealedText;
+    }
+
+    $randomIndex = $hiddenWordIndexes[array_rand($hiddenWordIndexes)];
+
+    $revealedWords[$randomIndex] = $originalWords[$randomIndex];
+
+    return implode(' ', $revealedWords);
 }
 }

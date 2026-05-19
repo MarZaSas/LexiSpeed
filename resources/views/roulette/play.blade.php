@@ -81,14 +81,14 @@
 
             <div class="roulette-wheel" id="rouletteWheel">
                 <div class="wheel-label" style="--angle: 20deg;">+50</div>
-                <div class="wheel-label" style="--angle: 60deg;">+50</div>
-                <div class="wheel-label" style="--angle: 100deg;">+50</div>
-                <div class="wheel-label" style="--angle: 140deg;">+100</div>
-                <div class="wheel-label" style="--angle: 180deg;">+100</div>
+                <div class="wheel-label" style="--angle: 60deg;">+100</div>
+                <div class="wheel-label" style="--angle: 100deg;">-50</div>
+                <div class="wheel-label" style="--angle: 140deg;">-1 Vida</div>
+                <div class="wheel-label" style="--angle: 180deg;">+50</div>
                 <div class="wheel-label" style="--angle: 220deg;">-50</div>
-                <div class="wheel-label" style="--angle: 260deg;">-50</div>
-                <div class="wheel-label" style="--angle: 300deg;">Comodín</div>
-                <div class="wheel-label" style="--angle: 340deg;">-1 Vida</div>
+                <div class="wheel-label" style="--angle: 260deg;">Comodín</div>
+                <div class="wheel-label" style="--angle: 300deg;">+50</div>
+                <div class="wheel-label" style="--angle: 340deg;">+100</div>
             </div>
 
             <form id="spinForm" action="{{ route('roulette.spin', $game) }}" method="POST" class="mt-4">
