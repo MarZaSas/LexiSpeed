@@ -58,32 +58,71 @@
     </div>
 @else
     <div class="text-center mb-5">
-        <h1 class="title-gradient mb-3">Bienvenido a LexiSpeed</h1>
-        <p class="subtitle-text">Selecciona un modo de juego para empezar.</p>
+        <h1 class="title-gradient mb-3">Elige tu modo de juego</h1>
+        <p class="subtitle-text">Selecciona cómo quieres entrenar tu velocidad y memoria.</p>
     </div>
 
     <div class="row g-4 justify-content-center">
         <div class="col-md-4">
             <div class="panel-card p-4 h-100 text-center">
                 <h3 class="fw-bold text-info mb-3">Modo Clásico</h3>
-                <p class="subtitle-text">Escribe palabras contra el tiempo.</p>
-                <a href="{{ route('game.difficulty') }}" class="btn btn-info btn-game text-white w-100">Jugar clásico</a>
+                <p class="subtitle-text">
+                    Escribe palabras a contrarreloj y consigue la máxima puntuación.
+                </p>
+
+                <ul class="list-unstyled mb-4" style="color:#cbd5e1;">
+                    <li>Fácil, medio y difícil</li>
+                    <li>Palabras individuales</li>
+                    <li>Puntuación por rapidez</li>
+                </ul>
+
+                <a href="{{ route('game.difficulty') }}" class="btn btn-info btn-game text-white w-100">
+                    Jugar clásico
+                </a>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="panel-card p-4 h-100 text-center">
                 <h3 class="fw-bold text-warning mb-3">Modo Fantasma</h3>
-                <p class="subtitle-text">Memoriza frases durante 3 segundos.</p>
-                <a href="{{ route('game.modes') }}" class="btn btn-warning btn-game text-dark w-100">Ver modos</a>
+                <p class="subtitle-text">
+                    Memoriza frases durante 3 segundos y escríbelas de memoria.
+                </p>
+
+                <ul class="list-unstyled mb-4" style="color:#cbd5e1;">
+                    <li>3 frases por partida</li>
+                    <li>Sin dificultad</li>
+                    <li>Hasta 300 puntos</li>
+                </ul>
+
+                <form action="{{ route('ghost.start') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-warning btn-game text-dark w-100">
+                        Jugar fantasma
+                    </button>
+                </form>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="panel-card p-4 h-100 text-center">
                 <h3 class="fw-bold text-danger mb-3">Modo Ruleta</h3>
-                <p class="subtitle-text">Gira la ruleta, compra letras y resuelve frases.</p>
-                <a href="{{ route('game.modes') }}" class="btn btn-danger btn-game w-100">Ver modos</a>
+                <p class="subtitle-text">
+                    Gira la ruleta, compra letras y resuelve la frase oculta.
+                </p>
+
+                <ul class="list-unstyled mb-4" style="color:#cbd5e1;">
+                    <li>Una frase oculta</li>
+                    <li>3 vidas</li>
+                    <li>Premios y castigos</li>
+                </ul>
+
+                <form action="{{ route('roulette.start') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-game w-100">
+                        Jugar ruleta
+                    </button>
+                </form>
             </div>
         </div>
     </div>
