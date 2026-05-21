@@ -98,7 +98,7 @@
                 <form action="{{ route('ghost.start') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-warning btn-game text-dark w-100">
-                        Jugar fantasma
+                        Jugar fantasmaa
                     </button>
                 </form>
             </div>
