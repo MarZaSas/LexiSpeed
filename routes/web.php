@@ -8,6 +8,7 @@ use App\Http\Controllers\PhraseController;
 use App\Http\Controllers\GhostGameController;
 use App\Http\Controllers\RoulettePhraseController;
 use App\Http\Controllers\RouletteGameController;
+use App\Http\Controllers\RankingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/roulette/{game}/solve', [RouletteGameController::class, 'solve'])
         ->name('roulette.solve');
+
+    Route::get('/ranking/classic', [RankingController::class, 'classic'])
+    ->name('ranking.classic');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {

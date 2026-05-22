@@ -178,6 +178,7 @@
             <div class="d-flex gap-3 flex-wrap align-items-center">
                 <a href="{{ url('/') }}" class="nav-link nav-link-custom">Inicio</a>
                 <a href="{{ route('game.modes') }}" class="nav-link nav-link-custom">Jugar</a>
+                <a href="{{ route('ranking.classic') }}" class="nav-link nav-link-custom">Ranking</a>
 
                 @if(auth()->user()->isAdmin())
                     <a href="{{ route('dashboard') }}" class="nav-link nav-link-custom">Panel</a>
