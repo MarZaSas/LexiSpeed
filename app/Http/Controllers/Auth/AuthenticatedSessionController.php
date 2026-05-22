@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('dashboard'));
         }
 
-        return redirect()->intended(route('game.difficulty'));
+        return redirect()->intended(route('game.modes'));
     }
 
     /**
