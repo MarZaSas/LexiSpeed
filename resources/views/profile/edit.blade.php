@@ -112,28 +112,7 @@
                 </div>
             </div>
 
-            <div class="row g-3 mt-3">
-                <div class="col-md-4">
-                    <div class="profile-stat-card text-center">
-                        <div class="stat-label">Clásico</div>
-                        <div class="stat-value text-info">{{ $stats['classic_games'] }}</div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="profile-stat-card text-center">
-                        <div class="stat-label">Fantasma</div>
-                        <div class="stat-value text-warning">{{ $stats['ghost_games'] }}</div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="profile-stat-card text-center">
-                        <div class="stat-label">Ruleta</div>
-                        <div class="stat-value text-danger">{{ $stats['roulette_games'] }}</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
