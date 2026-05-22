@@ -44,8 +44,43 @@
 
 <div class="row g-4 justify-content-center mb-4">
     <div class="col-lg-10">
+        <div class="panel-card p-4">
+            <h2 class="profile-section-title mb-3">Filtrar estadísticas</h2>
+
+            <div class="d-flex flex-wrap gap-2">
+                <a href="{{ route('profile.edit', ['mode' => 'all']) }}"
+                   class="btn btn-game {{ $selectedMode === 'all' ? 'btn-info text-white' : 'btn-outline-light' }}">
+                    Todas
+                </a>
+
+                <a href="{{ route('profile.edit', ['mode' => 'classic']) }}"
+                   class="btn btn-game {{ $selectedMode === 'classic' ? 'btn-info text-white' : 'btn-outline-light' }}">
+                    Clásico
+                </a>
+
+                <a href="{{ route('profile.edit', ['mode' => 'ghost']) }}"
+                   class="btn btn-game {{ $selectedMode === 'ghost' ? 'btn-warning text-dark' : 'btn-outline-light' }}">
+                    Fantasma
+                </a>
+
+                <a href="{{ route('profile.edit', ['mode' => 'roulette']) }}"
+                   class="btn btn-game {{ $selectedMode === 'roulette' ? 'btn-danger' : 'btn-outline-light' }}">
+                    Ruleta
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 justify-content-center mb-4">
+    <div class="col-lg-10">
         <div class="panel-card p-4 p-md-5">
-            <h2 class="profile-section-title mb-4">Estadísticas de juego</h2>
+            <h2 class="profile-section-title mb-4">
+                Estadísticas de juego
+                @if($selectedMode !== 'all')
+                    <span class="text-info text-capitalize">· {{ $selectedMode }}</span>
+                @endif
+            </h2>
 
             <div class="row g-3">
                 <div class="col-md-3">

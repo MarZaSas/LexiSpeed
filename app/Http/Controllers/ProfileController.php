@@ -15,28 +15,34 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function edit(Request $request): View
-    {
-        $user = $request->user();
+{
+    $user = $request->user();
 
-        $games = $user->games()
-            ->whereNotNull('ended_at')
-            ->latest()
-            ->get();
+    $selectedMode = $request->get('mode', 'all');
 
-        $stats = [
-            'total_games' => $games->count(),
-            'best_score' => $games->max('total_score') ?? 0,
-            'average_score' => round($games->avg('total_score') ?? 0),
-            'total_errors' => $games->sum('total_errors'),
-            'classic_games' => $games->where('mode', 'classic')->count(),
-            'ghost_games' => $games->where('mode', 'ghost')->count(),
-            'roulette_games' => $games->where('mode', 'roulette')->count(),
-        ];
+    $allGames = $user->games()
+        ->whereNotNull('ended_at')
+        ->latest()
+        ->get();
 
-        $latestGames = $games->take(10);
+    $filteredGames = $selectedMode === 'all'
+        ? $allGames
+        : $allGames->where('mode', $selectedMode);
 
-        return view('profile.edit', compact('user', 'stats', 'latestGames'));
-    }
+    $stats = [
+        'total_games' => $filteredGames->count(),
+        'best_score' => $filteredGames->max('total_score') ?? 0,
+        'average_score' => round($filteredGames->avg('total_score') ?? 0),
+        'total_errors' => $filteredGames->sum('total_errors'),
+        'classic_games' => $allGames->where('mode', 'classic')->count(),
+        'ghost_games' => $allGames->where('mode', 'ghost')->count(),
+        'roulette_games' => $allGames->where('mode', 'roulette')->count(),
+    ];
+
+    $latestGames = $filteredGames->take(10);
+
+    return view('profile.edit', compact('user', 'stats', 'latestGames', 'selectedMode'));
+}
 
     /**
      * Update the user's profile information.
