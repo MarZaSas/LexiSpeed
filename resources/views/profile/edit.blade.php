@@ -9,7 +9,7 @@
 <div class="row justify-content-center mb-4">
     <div class="col-lg-8">
         <div class="profile-hero-card text-center p-4 p-md-5">
-            
+
             <div class="profile-avatar mb-3">
                 {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
             </div>
@@ -42,6 +42,105 @@
     </div>
 </div>
 
+<div class="row g-4 justify-content-center mb-4">
+    <div class="col-lg-10">
+        <div class="panel-card p-4 p-md-5">
+            <h2 class="profile-section-title mb-4">Estadísticas de juego</h2>
+
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Partidas</div>
+                        <div class="stat-value text-info">{{ $stats['total_games'] }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Mejor puntuación</div>
+                        <div class="stat-value text-success">{{ $stats['best_score'] }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Media</div>
+                        <div class="stat-value text-warning">{{ $stats['average_score'] }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Errores</div>
+                        <div class="stat-value text-danger">{{ $stats['total_errors'] }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-3">
+                <div class="col-md-4">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Clásico</div>
+                        <div class="stat-value text-info">{{ $stats['classic_games'] }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Fantasma</div>
+                        <div class="stat-value text-warning">{{ $stats['ghost_games'] }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="profile-stat-card text-center">
+                        <div class="stat-label">Ruleta</div>
+                        <div class="stat-value text-danger">{{ $stats['roulette_games'] }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row g-4 justify-content-center mb-4">
+    <div class="col-lg-10">
+        <div class="panel-card p-4 p-md-5">
+            <h2 class="profile-section-title mb-4">Últimas partidas</h2>
+
+            <div class="table-responsive">
+                <table class="table table-custom align-middle">
+                    <thead>
+                        <tr>
+                            <th>Modo</th>
+                            <th>Dificultad</th>
+                            <th>Puntuación</th>
+                            <th>Errores</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($latestGames as $game)
+                            <tr>
+                                <td class="fw-bold text-capitalize">{{ $game->mode }}</td>
+                                <td class="text-capitalize">{{ $game->difficulty }}</td>
+                                <td class="fw-bold text-success">{{ $game->total_score }}</td>
+                                <td class="text-danger fw-bold">{{ $game->total_errors }}</td>
+                                <td>{{ $game->ended_at ? $game->ended_at->format('d/m/Y H:i') : '-' }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-4">
+                                    Todavía no hay partidas registradas.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row g-4 justify-content-center">
     <div class="col-lg-10">
         <div class="panel-card p-4 p-md-5">
@@ -69,6 +168,24 @@
 
 @push('styles')
 <style>
+    .profile-stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 18px;
+    height: 100%;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 1.45rem;
+    font-weight: 900;
+}
     .profile-hero-card {
         background: rgba(255,255,255,0.06);
         border: 1px solid rgba(255,255,255,0.12);

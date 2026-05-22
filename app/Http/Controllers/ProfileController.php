@@ -16,9 +16,26 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = $request->user();
+
+        $games = $user->games()
+            ->whereNotNull('ended_at')
+            ->latest()
+            ->get();
+
+        $stats = [
+            'total_games' => $games->count(),
+            'best_score' => $games->max('total_score') ?? 0,
+            'average_score' => round($games->avg('total_score') ?? 0),
+            'total_errors' => $games->sum('total_errors'),
+            'classic_games' => $games->where('mode', 'classic')->count(),
+            'ghost_games' => $games->where('mode', 'ghost')->count(),
+            'roulette_games' => $games->where('mode', 'roulette')->count(),
+        ];
+
+        $latestGames = $games->take(10);
+
+        return view('profile.edit', compact('user', 'stats', 'latestGames'));
     }
 
     /**
