@@ -16,7 +16,7 @@
 
         <div class="mb-4">
             <label for="name" class="profile-label d-block">Nombre</label>
-            <input id="name" name="name" type="text" class="form-control profile-input" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
+            <input id="name" name="name" type="text" class="form-control profile-input" value="{{ old('name', $user->name) }}" required  autocomplete="name">
             @error('name')
                 <div class="text-danger mt-2">{{ $message }}</div>
             @enderror

@@ -78,6 +78,10 @@ class RouletteGameController extends Controller
         return back();
     }
 
+    if ($roulette->turn_points > 0) {
+        return back()->with('roulette_result', 'Debes comprar una letra o ahorrar los puntos antes de volver a girar.');
+    }
+
     $result = $request->result;
     $message = '';
 

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title ?? 'Panel Admin' }}</title>
+    <title>Lexispeed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -154,25 +154,24 @@
 <body>
     <nav class="navbar navbar-expand-lg admin-navbar">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <a href="{{ auth()->user()->isAdmin() ? route('dashboard') : route('game.difficulty') }}"
-            class="d-flex align-items-center gap-2 text-decoration-none">
+            <a href="{{ route('profile.edit') }}"
+                class="d-flex align-items-center gap-2 text-decoration-none">
 
-                <div class="nav-avatar">
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                </div>
+                    <div class="nav-avatar">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    </div>
 
-                <div class="d-flex flex-column lh-sm">
-                    @if(auth()->user()->isAdmin())
-                        <span class="nav-username">Admin</span>
-                        <small class="nav-role text-warning">Administrador</small>
-                    @else
-                        <span class="nav-username">
-                            {{ \Illuminate\Support\Str::limit(auth()->user()->name, 14, '') }}
-                        </span>
-                        <small class="nav-role text-info">Jugador</small>
-                    @endif
-                </div>
-
+                    <div class="d-flex flex-column lh-sm">
+                        @if(auth()->user()->isAdmin())
+                            <span class="nav-username">Admin</span>
+                            <small class="nav-role text-warning">Administrador</small>
+                        @else
+                            <span class="nav-username">
+                                {{ \Illuminate\Support\Str::limit(auth()->user()->name, 14, '') }}
+                            </span>
+                            <small class="nav-role text-info">Jugador</small>
+                        @endif
+                    </div>
             </a>
 
             <div class="d-flex gap-3 flex-wrap align-items-center">
@@ -188,7 +187,6 @@
                     <a href="{{ route('roulette-phrases.index') }}" class="nav-link nav-link-custom">Frases Ruleta</a>
                 @endif
 
-                <a href="{{ route('profile.edit') }}" class="nav-link nav-link-custom">Perfil</a>
 
                 <form method="POST" action="{{ route('logout') }}" class="m-0">
                     @csrf

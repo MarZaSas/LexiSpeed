@@ -95,8 +95,13 @@
                 @csrf
                 <input type="hidden" name="result" id="wheelResult">
 
-                <button type="submit" class="btn btn-danger btn-game px-5" id="spinButton">
-                    Girar ruleta
+                <button
+                    type="submit"
+                    class="btn btn-danger btn-game px-5"
+                    id="spinButton"
+                    {{ $roulette->turn_points > 0 ? 'disabled' : '' }}
+                >
+                    {{ $roulette->turn_points > 0 ? 'Haz una acción primero' : 'Girar ruleta' }}
                 </button>
             </form>
         </div>
